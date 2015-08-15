@@ -10,7 +10,16 @@ class vpnize::torguard (
     src_target => $src,
     target     => '/opt',
     extension  => 'zip'
+  } ->
+
+  file { "/opt/${archive}/pass.txt":
+    ensure  =>  file,
+    mode    =>  '0644',
+    content =>  template('vpnize/torguard-pass.erb'),
+    owner   =>  root,
+    group   =>  root,
   }
+
 
   package{'openvpn':
     ensure  => present
@@ -19,17 +28,9 @@ class vpnize::torguard (
   file { '/usr/bin/torguard':
     ensure  => file,
     content => "cd /opt/${archive} && openvpn --config \"TorGuard.\$1.ovpn\" --auth-user-pass pass.txt",
-    mode    => '0644',
+    mode    => 'a+rx',
     owner   => root,
     group   => root,
-  }
-
-  file { "/opt/${archive}":
-    ensure  =>  file,
-    mode    =>  '0644',
-    content =>  template('torguard-pass.erb'),
-    owner   =>  root,
-    group   =>  root,
   }
 
 }
