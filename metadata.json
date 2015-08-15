@@ -1,0 +1,14 @@
+{
+  "name": "strings/vpnize",
+  "version": "0.0.1",
+  "author": "Ronen Narkis <narkisr@gmail.com>",
+  "summary": "VPNizing systems",
+  "license": "Apache 2.0",
+  "source": "https://github.com/pulling-strings/puppet-vpnize",
+  "project_page": "https://github.com/pulling-strings/puppet-vpnize",
+  "issues_url": "https://github.com/pulling-strings/puppet-vpnize/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
