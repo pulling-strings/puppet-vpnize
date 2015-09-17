@@ -6,10 +6,13 @@ class vpnize::torguard (
   $password = 'bar'
 ) {
 
+  ensure_packages(['unzip'])
+
   archive::extract {$archive:
     src_target => $src,
     target     => '/opt',
-    extension  => 'zip'
+    extension  => 'zip',
+    require    => Package['unzip']
   } ->
 
   file { "/opt/${archive}/pass.txt":
